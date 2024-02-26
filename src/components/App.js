@@ -9,8 +9,9 @@ import {
   handleBeforeInstallPrompt,
 } from "../common/handleInstall";
 import Settings from "./Settings";
-import {gameInit, getDailySeed} from "../logic/gameInit";
+import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
+import getDailySeed from "../common/getDailySeed";
 
 function parseUrlQuery() {
   const searchParams = new URLSearchParams(document.location.search);
