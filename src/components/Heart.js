@@ -4,11 +4,11 @@ import Share from "./Share";
 export default function Heart({setDisplay, appName, shareText, repoName}) {
 
   return (
-    <div className="App heart">
+    <div className="App info">
       <h1>{appName}</h1>
       <div className="infoText">
         {"Like this game? Share it with your friends.\n\n"}
-        {<Share appName={template-app} text={shareText} url={"TODO"}></Share>}
+        {<Share appName={"TODO-app-name"} text={shareText} url={"TODO"}></Share>}
         {`\n\n`}
         {<hr></hr>}
         {`\n`}
