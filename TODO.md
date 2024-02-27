@@ -1,6 +1,10 @@
-## `package.json`
+
+## All files
 
 - [ ] Replace TODO instances
+
+## `package.json`
+
 - [ ] Remove these dependencies if this isn't a word game:
   - @skedwards88/word_lists
   - @skedwards88/word_logic
@@ -9,6 +13,7 @@
   - seedrandom
   - lodash.clonedeep
 - [ ] Potentially bump package versions
+- [ ] Run `npm install`
 
 ## `.gitignore`
 
@@ -16,7 +21,6 @@
 
 ## `index.js`
 
-- [ ] Replace TODO instances
 - [ ] If this app uses a custom url instead of the default GitHub Pages url, adjust the `path` and `scope` variables
 
 ## `.github/ISSUE_TEMPLATE`
@@ -30,6 +34,7 @@
 
 - [] If this is a word game, add the `repository_dispatch` trigger to the `.github/workflows/deploy.yml` workflow
 - [] If this is a word game, add the steps to update the word list to the `.github/workflows/deploy.yml` workflow
+- [ ] In your GitHub Pages settings, specify that GitHub Pages is built from GitHub Actions.
 
 ## `jest.config.cjs`
 
@@ -44,10 +49,6 @@
 - [ ] Adust the theme color
 - [ ] Adjust the name and description
 
-## `src/privacy.html`
-
-- [ ] Replace TODO instances
-
 ## `manifest.json`
 
 - [ ] If using a custom url, update `start_url`
@@ -61,14 +62,30 @@
 - [ ] Update `icons`
 - [ ] Update `screenshots`
 
-## images
+## `src/images`
 
 - [ ] Add an svg favicon and reflect it in:
   - [ ] `index.html`
   - [ ] `manifest.json`
   - [ ] `webpack.config.js`
 - [ ] Delete unneeded icons
+- [ ] Add a maskable icon, screenshots, and PNG icons and reflect them in:
+  - [ ] `index.html`
+  - [ ] `manifest.json`
+  - [ ] `webpack.config.js`
 
 ## `src/components/Heart.js`
 
 - [ ] If this isn't a word game, remove the word data attribution
+
+## Custom domains
+
+- [ ] If you are using a custom domain, follow the steps in https://github.com/skedwards88/react-base?tab=readme-ov-file#custom-domain-name
+
+## PWA
+
+- [ ] Use Lighthouse in Chrome developer tools to verify that the app is installable and meets PWA requirements.
+
+## Google Analytics
+
+- [ ] See https://github.com/skedwards88/react-base?tab=readme-ov-file#google-analytics
