@@ -1,5 +1,5 @@
 {
-  "name": "template-app",
+  "name": "TODO-template-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skedwards88/template-app.git"
+    "url": "git+https://github.com/skedwards88/TODO-template-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "",
   "bugs": {
-    "url": "https://github.com/skedwards88/template-app/issues"
+    "url": "https://github.com/skedwards88/TODO-template-app/issues"
   },
-  "homepage": "https://github.com/skedwards88/template-app#readme",
+  "homepage": "https://github.com/skedwards88/TODO-template-app#readme",
   "dependencies": {
     "@skedwards88/word_lists": "latest",
     "@skedwards88/word_logic": "2.0.7",
