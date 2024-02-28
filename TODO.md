@@ -81,6 +81,9 @@
 ## Custom domains
 
 - [ ] If you are using a custom domain, follow the steps in https://github.com/skedwards88/react-base?tab=readme-ov-file#custom-domain-name
+  - [ ] update `start_url` in `manifest.json`
+  - [ ] adjust the `path` and `scope` variables in `index.js`
+  - [ ] update the URLs in `privacy.html` and in `src/components/Heart`
 
 ## PWA
 
@@ -89,3 +92,4 @@
 ## Google Analytics
 
 - [ ] See https://github.com/skedwards88/react-base?tab=readme-ov-file#google-analytics
+- [ ] Update the `G_TODO` id in `index.html`

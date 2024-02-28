@@ -1,5 +1,6 @@
 import React from "react";
-import {handleInstall} from "../common/handleInstall";
+import { handleInstall } from "../common/handleInstall";
+import { handleShare } from "../common/handleShare";
 
 // todo delete any unneeded controls
 function ControlBar({
@@ -27,7 +28,7 @@ function ControlBar({
         id="helpButton"
         className="controlButton"
         disabled={gameState.gameIsSolved}
-        onClick={() => dispatchGameState({action: "getHint"})}
+        onClick={() => dispatchGameState({ action: "getHint" })}
       ></button>
       <button
         id="settingsButton"
@@ -49,7 +50,7 @@ function ControlBar({
           id="calendarButtonSolved"
           className="controlButton"
           onClick={() => {
-            dispatchGameState({action: "clearStreakIfNeeded"});
+            dispatchGameState({ action: "clearStreakIfNeeded" });
             setDisplay("daily");
           }}
         ></button>
@@ -65,13 +66,11 @@ function ControlBar({
         <button
           id="shareButton"
           onClick={() => {
-            timerDispatch({action: "pause"});
             setDisplay("pause");
             handleShare({
-              text: "Try out this Gribbles puzzle:",
-              seed: `${gameState.seed}_${Math.sqrt(gameState.letters.length)}_${
-                gameState.minWordLength
-              }_${gameState.easyMode ? "e" : "h"}`,
+              text: "TODO text",
+              seed: `${gameState.seed}_${Math.sqrt(gameState.letters.length)}_${gameState.minWordLength
+                }_${gameState.easyMode ? "e" : "h"}`,
             });
           }}
         ></button>

@@ -9,8 +9,8 @@ import {
   handleBeforeInstallPrompt,
 } from "../common/handleInstall";
 import Settings from "./Settings";
-import {gameInit} from "../logic/gameInit";
-import {gameReducer} from "../logic/gameReducer";
+import { gameInit } from "../logic/gameInit";
+import { gameReducer } from "../logic/gameReducer";
 import getDailySeed from "../common/getDailySeed";
 
 function parseUrlQuery() {
@@ -55,7 +55,7 @@ export default function App() {
 
   let [dailyGameState, dailyDispatchGameState] = React.useReducer(
     gameReducer,
-    {isDaily: true},
+    { isDaily: true },
     gameInit,
   );
 
@@ -133,6 +133,7 @@ export default function App() {
         appName="TODO app name"
         shareText="TODO share text"
         repoName="TODO repo name"
+        url="TODO app url"
       />;
 
     case "settings":
@@ -161,7 +162,7 @@ export default function App() {
               id="helpButton"
               className="controlButton"
               disabled={dailyGameState.gameIsSolved}
-              onClick={() => dailyDispatchGameState({action: "getHint"})}
+              onClick={() => dailyDispatchGameState({ action: "getHint" })}
             ></button>
             <button id="exitDailyButton" onClick={() => setDisplay("game")}>
               Exit daily challenge
