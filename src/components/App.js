@@ -9,8 +9,8 @@ import {
   handleBeforeInstallPrompt,
 } from "../common/handleInstall";
 import Settings from "./Settings";
-import { gameInit } from "../logic/gameInit";
-import { gameReducer } from "../logic/gameReducer";
+import {gameInit} from "../logic/gameInit";
+import {gameReducer} from "../logic/gameReducer";
 import getDailySeed from "../common/getDailySeed";
 
 function parseUrlQuery() {
@@ -26,16 +26,17 @@ function parseUrlQuery() {
     numLetters = parseInt(numLetters);
   }
 
-  return [seed, numLetters]
+  return [seed, numLetters];
 }
 
 export default function App() {
-
   // TODO enter the actual return values
   const [seed, numLetters] = parseUrlQuery();
 
   // TODO enter value of the saved display state. If no daily challenge, remove daily logic.
-  const savedDisplay = JSON.parse(localStorage.getItem("TODODisplaySavedStateName"));
+  const savedDisplay = JSON.parse(
+    localStorage.getItem("TODODisplaySavedStateName"),
+  );
   const [display, setDisplay] = React.useState(
     savedDisplay === "game" || savedDisplay === "daily" ? savedDisplay : "game",
   );
@@ -55,7 +56,7 @@ export default function App() {
 
   let [dailyGameState, dailyDispatchGameState] = React.useReducer(
     gameReducer,
-    { isDaily: true },
+    {isDaily: true},
     gameInit,
   );
 
@@ -87,33 +88,40 @@ export default function App() {
   React.useEffect(() => {
     // Need to store the function in a variable so that
     // the add and remove actions can reference the same function
-    const listener = (event) => handleBeforeInstallPrompt(
-      event,
-      setInstallPromptEvent,
-      setShowInstallButton,
-    );
+    const listener = (event) =>
+      handleBeforeInstallPrompt(
+        event,
+        setInstallPromptEvent,
+        setShowInstallButton,
+      );
 
     window.addEventListener("beforeinstallprompt", listener);
 
-    return () =>
-      window.removeEventListener("beforeinstallprompt", listener);
+    return () => window.removeEventListener("beforeinstallprompt", listener);
   }, []);
 
   React.useEffect(() => {
     // Need to store the function in a variable so that
     // the add and remove actions can reference the same function
-    const listener = () => handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
+    const listener = () =>
+      handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
 
     window.addEventListener("appinstalled", listener);
     return () => window.removeEventListener("appinstalled", listener);
   }, []);
 
   React.useEffect(() => {
-    window.localStorage.setItem("TODODisplaySavedStateName", JSON.stringify(display));
+    window.localStorage.setItem(
+      "TODODisplaySavedStateName",
+      JSON.stringify(display),
+    );
   }, [display]);
 
   React.useEffect(() => {
-    window.localStorage.setItem("TODOGameSavedStateName", JSON.stringify(gameState));
+    window.localStorage.setItem(
+      "TODOGameSavedStateName",
+      JSON.stringify(gameState),
+    );
   }, [gameState]);
 
   React.useEffect(() => {
@@ -128,13 +136,15 @@ export default function App() {
       return <Rules setDisplay={setDisplay}></Rules>;
 
     case "heart":
-      return <Heart
-        setDisplay={setDisplay}
-        appName="TODO app name"
-        shareText="TODO share text"
-        repoName="TODO repo name"
-        url="TODO app url"
-      />;
+      return (
+        <Heart
+          setDisplay={setDisplay}
+          appName="TODO app name"
+          shareText="TODO share text"
+          repoName="TODO repo name"
+          url="TODO app url"
+        />
+      );
 
     case "settings":
       return (
@@ -162,7 +172,7 @@ export default function App() {
               id="helpButton"
               className="controlButton"
               disabled={dailyGameState.gameIsSolved}
-              onClick={() => dailyDispatchGameState({ action: "getHint" })}
+              onClick={() => dailyDispatchGameState({action: "getHint"})}
             ></button>
             <button id="exitDailyButton" onClick={() => setDisplay("game")}>
               Exit daily challenge

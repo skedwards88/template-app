@@ -1,6 +1,6 @@
 import React from "react";
-import { handleInstall } from "../common/handleInstall";
-import { handleShare } from "../common/handleShare";
+import {handleInstall} from "../common/handleInstall";
+import {handleShare} from "../common/handleShare";
 
 // todo delete any unneeded controls
 function ControlBar({
@@ -28,7 +28,7 @@ function ControlBar({
         id="helpButton"
         className="controlButton"
         disabled={gameState.gameIsSolved}
-        onClick={() => dispatchGameState({ action: "getHint" })}
+        onClick={() => dispatchGameState({action: "getHint"})}
       ></button>
       <button
         id="settingsButton"
@@ -50,7 +50,7 @@ function ControlBar({
           id="calendarButtonSolved"
           className="controlButton"
           onClick={() => {
-            dispatchGameState({ action: "clearStreakIfNeeded" });
+            dispatchGameState({action: "clearStreakIfNeeded"});
             setDisplay("daily");
           }}
         ></button>
@@ -69,8 +69,9 @@ function ControlBar({
             setDisplay("pause");
             handleShare({
               text: "TODO text",
-              seed: `${gameState.seed}_${Math.sqrt(gameState.letters.length)}_${gameState.minWordLength
-                }_${gameState.easyMode ? "e" : "h"}`,
+              seed: `${gameState.seed}_${Math.sqrt(gameState.letters.length)}_${
+                gameState.minWordLength
+              }_${gameState.easyMode ? "e" : "h"}`,
             });
           }}
         ></button>
