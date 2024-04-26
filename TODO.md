@@ -33,6 +33,8 @@
 ## `.github/workflows`
 
 - [] If this is a word game, add the `repository_dispatch` trigger to the `.github/workflows/deploy.yml` workflow
+  - [ ] Also add the word game to the [`word_list` package workflow](https://github.com/skedwards88/word_lists/blob/3126cc2fcc997468ea0d642d853aa5b74c174836/.github/workflows/package.yml#L60)
+  - [ ] Also grant the "Word Game Updater" app (https://github.com/settings/installations/43072167) access to the repo
 - [] If this is a word game, add the steps to update the word list to the `.github/workflows/deploy.yml` workflow
 - [ ] In your GitHub Pages settings, specify that GitHub Pages is built from GitHub Actions.
 

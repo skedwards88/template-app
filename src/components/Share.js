@@ -13,7 +13,7 @@ export default function Share({appName, text, seed, url}) {
   } else {
     return (
       <button onClick={() => handleCopy({text, fullUrl})}>
-        Copy sharing link
+        Copy link
       </button>
     );
   }
