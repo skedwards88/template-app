@@ -205,6 +205,9 @@ export default function App() {
             dispatchGameState={dispatchGameState}
             gameState={gameState}
             dailyIsSolved={dailyGameState.gameIsSolved}
+            appName={"TODO"}
+            shareText={"TODO"}
+            url={"TODO"}
           ></ControlBar>
           <Game
             dispatchGameState={dispatchGameState}
