@@ -107,3 +107,9 @@
 - [ ] Upload the .aab file to Google Play
 - [ ] Update the sha 256 fingerprint in the assetlinks.json file with the re-signed value on Google Play
 - [ ] If using the default GitHub Pages URL, upload the asset links to https://github.com/skedwards88/.well-known
+
+## Set up hook to prevent pushing to main without passing linters
+
+- [ ] `npm install husky --save-dev`
+- [ ] `npx husky init`
+- [ ] Add a pre-push hook (can copy from https://github.com/skedwards88/deep-space-slime/blob/main/.husky/pre-push)
