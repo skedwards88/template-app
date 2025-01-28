@@ -113,3 +113,11 @@
 - [ ] `npm install husky --save-dev`
 - [ ] `npx husky init`
 - [ ] Add a pre-push hook (can copy from https://github.com/skedwards88/deep-space-slime/blob/main/.husky/pre-push)
+
+## Debugging notes
+
+For android debugging on chrome:
+
+- Enable USB debugging under developer tools on phone settings
+- Connect computer via USB to computer
+- Go to chrome://inspect/#devices on computer
