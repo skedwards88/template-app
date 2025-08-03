@@ -98,15 +98,27 @@
 
 ## Google Play
 
-- [ ] Can use pwabuilder.com to package the PWA for Google Play
-  - [ ] If using the default GitHub Pages URL:
-    - `Package ID` is `APP_NAME.io.github.skedwards88.twa`
-    - `Host` is the full URL (e.g. `skedwards88.github.io/APP_NAME`)
-    - `Start URL` is `/`
+Can use pwabuilder.com to package the PWA for Google Play:
+
+- [ ] If using the default GitHub Pages URL:
+  - `Package ID` is `APP_NAME.io.github.skedwards88.twa`
+  - `Host` is the full URL (e.g. `skedwards88.github.io/APP_NAME`)
+  - `Start URL` is `/`
 - [ ] Store the app key and app key info securely
 - [ ] Upload the .aab file to Google Play
 - [ ] Update the sha 256 fingerprint in the assetlinks.json file with the re-signed value on Google Play
 - [ ] If using the default GitHub Pages URL, upload the asset links to https://github.com/skedwards88/.well-known
+
+Or can use the bubblewrap CLI to package (tutorial: https://developers.google.com/codelabs/pwa-in-play):
+
+- [ ] Install [bubblewrap cli](https://github.com/GoogleChromeLabs/bubblewrap/tree/main/packages/cli#bubblewrap-cli) `npm install --save-dev @bubblewrap/cli`
+- [ ] Navigate to directory where you want to save the package
+- [ ] Run `bubblewrap init`. e.g. `npx bubblewrap init --manifest=https://crossjig.com/assets/manifest.json`
+  - [ ] If this is the first time, allow it to install the JDK and Android dependencies
+  - [ ] Answer the prompts
+    - [ ] For apps at `https://skedwards88.github.io`, Application ID is like `dragon.io.github.skedwards88.twa`
+    - [ ] For apps that were previously packaged with PWA Builder, the key name (key alias) is `my-key-alias`
+- [ ] Once the package is generated, run `bubblewrap build` from the directory where the package was generated. e.g. `npx bubblewrap build`
 
 ## Set up hook to prevent pushing to main without passing linters
 
