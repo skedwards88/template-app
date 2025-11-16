@@ -1,6 +1,5 @@
-import sendAnalytics from "../common/sendAnalytics";
-import getRandomSeed from "../common/getRandomSeed";
-import getDailySeed from "../common/getDailySeed";
+import {getRandomSeed} from "@skedwards88/shared-components/src/logic/getRandomSeed";
+import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
 
 export function gameInit({useSaved = true, isDaily = false, seed}) {
   const savedStateName = isDaily
@@ -8,7 +7,7 @@ export function gameInit({useSaved = true, isDaily = false, seed}) {
     : "TODOGameSavedStateName";
 
   if (isDaily) {
-    seed = getDailySeed();
+    seed = getSeedFromDate();
   }
 
   if (!seed) {
@@ -25,8 +24,6 @@ export function gameInit({useSaved = true, isDaily = false, seed}) {
   ) {
     return savedState;
   }
-
-  sendAnalytics("new_game");
 
   return {
     // todo return game state

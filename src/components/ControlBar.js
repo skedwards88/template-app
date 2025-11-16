@@ -1,15 +1,12 @@
 import React from "react";
-import {handleInstall} from "../common/handleInstall";
 import {handleShare} from "../common/handleShare";
+import {isRunningStandalone} from "@skedwards88/shared-components/src/logic/isRunningStandalone";
 
 // todo delete any unneeded controls
 function ControlBar({
   dispatchGameState,
   gameState,
   setDisplay,
-  setInstallPromptEvent,
-  showInstallButton,
-  installPromptEvent,
   dailyIsSolved,
   appName,
   shareText,
@@ -78,13 +75,11 @@ function ControlBar({
         <></>
       )}
 
-      {showInstallButton && installPromptEvent ? (
+      {!isRunningStandalone() ? (
         <button
           id="installButton"
           className="controlButton"
-          onClick={() =>
-            handleInstall(installPromptEvent, setInstallPromptEvent)
-          }
+          onClick={() => setDisplay("installOverview")}
         ></button>
       ) : (
         <></>

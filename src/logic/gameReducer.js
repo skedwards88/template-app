@@ -1,6 +1,5 @@
 import cloneDeep from "lodash.clonedeep";
 import {gameInit} from "./gameInit";
-import sendAnalytics from "../common/sendAnalytics";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "newGame") {

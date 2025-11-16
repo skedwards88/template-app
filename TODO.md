@@ -82,19 +82,30 @@
 
 ## Custom domains
 
-- [ ] If you are using a custom domain, follow the steps in https://github.com/skedwards88/react-base?tab=readme-ov-file#custom-domain-name
+- [ ] If using a custom domain, follow the steps in https://github.com/skedwards88/react-base?tab=readme-ov-file#custom-domain-name
   - [ ] update `start_url` in `manifest.json`
   - [ ] adjust the `path` and `scope` variables in `index.js`
-  - [ ] update the URLs in `privacy.html` and in `src/components/Heart`
+  - [ ] update the URLs in `src/components/Heart`
+- [ ] For other games, I can make a subdomain under twistedtrailgames.com
+  - [ ] Add a `CNAME` file at the root of the repo with the site name (e.g. `blobble.twistedtrailgames.com`)
+  - [ ] Add a corresponding CNAME entry to the DNS settings on the twistedtrailgames squarespace dashboad
+  - [ ] Add the custom url (e.g. `blobble.twistedtrailgames.com`) to the corresponding github repo
+  - [ ] update `start_url` in `manifest.json`
+  - [ ] adjust the `path` and `scope` variables in `index.js`
 
 ## PWA
 
 - [ ] Use Lighthouse in Chrome developer tools to verify that the app is installable and meets PWA requirements.
 
-## Google Analytics
+## Analytics
 
-- [ ] See https://github.com/skedwards88/react-base?tab=readme-ov-file#google-analytics
-- [ ] Update the `G_TODO` id in `index.html`
+No longer use Google Analytics (https://github.com/skedwards88/react-base?tab=readme-ov-file#google-analytics) because it collects user location, which I don't want, but still have to disclose.
+Instead, use my custom analytics like in wordfall.
+
+## Privacy
+
+- Add `display` name to `package.json`
+- Make sure `bugs.url` in `package.json` is populated
 
 ## Google Play
 
@@ -116,8 +127,12 @@ Or can use the bubblewrap CLI to package (tutorial: https://developers.google.co
 - [ ] Run `bubblewrap init`. e.g. `npx bubblewrap init --manifest=https://crossjig.com/assets/manifest.json`
   - [ ] If this is the first time, allow it to install the JDK and Android dependencies
   - [ ] Answer the prompts
-    - [ ] For apps at `https://skedwards88.github.io`, Application ID is like `dragon.io.github.skedwards88.twa`
-    - [ ] For apps that were previously packaged with PWA Builder, the key name (key alias) is `my-key-alias`
+    - [ ] Application ID:
+      - [ ] For apps at `https://skedwards88.github.io`, Application ID is like `dragon.io.github.skedwards88.twa`
+      - [ ] Palette needs to use `com.palettegame.twa`
+      - [ ] Logic grid is `logicgrid.io.github.skedwards88.twa`
+    - Key name (key alias):
+      - [ ] For apps that were previously packaged with PWA Builder, the key name (key alias) is `my-key-alias`
 - [ ] Once the package is generated, run `bubblewrap build` from the directory where the package was generated. e.g. `npx bubblewrap build`
 
 ## Set up hook to prevent pushing to main without passing linters

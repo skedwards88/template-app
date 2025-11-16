@@ -7,11 +7,13 @@ import ControlBar from "./ControlBar";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
-} from "../common/handleInstall";
+} from "@skedwards88/shared-components/src/logic/handleInstall";
+import InstallOverview from "@skedwards88/shared-components/src/components/InstallOverview";
+import PWAInstall from "@skedwards88/shared-components/src/components/PWAInstall";
 import Settings from "./Settings";
 import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
-import getDailySeed from "../common/getDailySeed";
+import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
 
 function parseUrlQuery() {
   const searchParams = new URLSearchParams(document.location.search);
@@ -30,6 +32,42 @@ function parseUrlQuery() {
 }
 
 export default function App() {
+  // *****
+  // Install handling setup
+  // *****
+  // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
+  const [installPromptEvent, setInstallPromptEvent] = React.useState();
+  const [showInstallButton, setShowInstallButton] = React.useState(true);
+
+  React.useEffect(() => {
+    // Need to store the function in a variable so that
+    // the add and remove actions can reference the same function
+    const listener = (event) =>
+      handleBeforeInstallPrompt(
+        event,
+        setInstallPromptEvent,
+        setShowInstallButton,
+      );
+
+    window.addEventListener("beforeinstallprompt", listener);
+
+    return () => window.removeEventListener("beforeinstallprompt", listener);
+  }, []);
+
+  React.useEffect(() => {
+    // Need to store the function in a variable so that
+    // the add and remove actions can reference the same function
+    const listener = () =>
+      handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
+
+    window.addEventListener("appinstalled", listener);
+
+    return () => window.removeEventListener("appinstalled", listener);
+  }, []);
+  // *****
+  // End install handling setup
+  // *****
+
   // TODO enter the actual return values
   const [seed, numLetters] = parseUrlQuery();
 
@@ -40,9 +78,6 @@ export default function App() {
   const [display, setDisplay] = React.useState(
     savedDisplay === "game" || savedDisplay === "daily" ? savedDisplay : "game",
   );
-
-  const [installPromptEvent, setInstallPromptEvent] = React.useState();
-  const [showInstallButton, setShowInstallButton] = React.useState(true);
 
   // TODO update values passed to inits. If no daily challenge, remove daily logic.
   const [gameState, dispatchGameState] = React.useReducer(
@@ -83,31 +118,6 @@ export default function App() {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
-
-  React.useEffect(() => {
-    // Need to store the function in a variable so that
-    // the add and remove actions can reference the same function
-    const listener = (event) =>
-      handleBeforeInstallPrompt(
-        event,
-        setInstallPromptEvent,
-        setShowInstallButton,
-      );
-
-    window.addEventListener("beforeinstallprompt", listener);
-
-    return () => window.removeEventListener("beforeinstallprompt", listener);
-  }, []);
-
-  React.useEffect(() => {
-    // Need to store the function in a variable so that
-    // the add and remove actions can reference the same function
-    const listener = () =>
-      handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
-
-    window.addEventListener("appinstalled", listener);
-    return () => window.removeEventListener("appinstalled", listener);
   }, []);
 
   React.useEffect(() => {
@@ -158,7 +168,7 @@ export default function App() {
     // todo remove if no daily challenge
     case "daily":
       // force reinitialize the daily state if the day has changed
-      if (dailyGameState.seed != getDailySeed()) {
+      if (dailyGameState.seed != getSeedFromDate()) {
         dailyDispatchGameState({
           action: "newGame",
           isDaily: true,
@@ -194,14 +204,36 @@ export default function App() {
         <Stats setDisplay={setDisplay} stats={dailyGameState.stats}></Stats>
       );
 
+    case "installOverview":
+      return (
+        <InstallOverview
+          setDisplay={setDisplay}
+          setInstallPromptEvent={setInstallPromptEvent}
+          showInstallButton={showInstallButton}
+          installPromptEvent={installPromptEvent}
+          googleAppLink={
+            "todo"
+          }
+          appleAppLink={"todo"}
+        ></InstallOverview>
+      );
+
+    case "pwaInstall":
+      return (
+        <PWAInstall
+          setDisplay={setDisplay}
+          googleAppLink={
+            "todo"
+          }
+          appleAppLink={"todo"}
+        ></PWAInstall>
+      );
+
     default:
       return (
         <div className="App" id="todo-app-name">
           <ControlBar
             setDisplay={setDisplay}
-            setInstallPromptEvent={setInstallPromptEvent}
-            showInstallButton={showInstallButton}
-            installPromptEvent={installPromptEvent}
             dispatchGameState={dispatchGameState}
             gameState={gameState}
             dailyIsSolved={dailyGameState.gameIsSolved}
